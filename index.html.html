@@ -1,0 +1,839 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Energía para el Futuro - Portal Educativo sobre Energías Renovables</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #27ae60;
+            --primary-light: #2ecc71;
+            --primary-dark: #219a52;
+            --secondary: #3498db;
+            --accent: #e74c3c;
+            --light: #ecf0f1;
+            --dark: #2c3e50;
+            --gray: #7f8c8d;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: #f9f9f9;
+            color: var(--dark);
+            line-height: 1.6;
+        }
+        
+        header {
+            background: linear-gradient(135deg, var(--primary), var(--primary-light));
+            color: white;
+            padding: 1rem;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        .logo i {
+            font-size: 2.5rem;
+        }
+        
+        .logo-text h1 {
+            font-size: 1.8rem;
+            margin-bottom: 5px;
+        }
+        
+        .logo-text p {
+            font-size: 1rem;
+            opacity: 0.9;
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 20px;
+        }
+        
+        nav a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            padding: 8px 12px;
+            border-radius: 4px;
+            transition: background 0.3s;
+        }
+        
+        nav a:hover, nav a.active {
+            background: rgba(255,255,255,0.2);
+        }
+        
+        .hero {
+            background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('https://images.unsplash.com/photo-1466611653911-95081537e5b7?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            padding: 5rem 1rem;
+            text-align: center;
+        }
+        
+        .hero h2 {
+            font-size: 2.8rem;
+            margin-bottom: 1.5rem;
+        }
+        
+        .hero p {
+            font-size: 1.3rem;
+            max-width: 800px;
+            margin: 0 auto 2.5rem;
+        }
+        
+        .btn {
+            display: inline-block;
+            background: var(--secondary);
+            color: white;
+            padding: 12px 30px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: all 0.3s;
+            border: none;
+            cursor: pointer;
+            font-size: 1rem;
+        }
+        
+        .btn:hover {
+            background: #2980b9;
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+        
+        .btn-outline {
+            background: transparent;
+            border: 2px solid white;
+        }
+        
+        .btn-outline:hover {
+            background: white;
+            color: var(--primary);
+        }
+        
+        section {
+            padding: 4rem 1rem;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 3rem;
+            color: var(--primary-dark);
+        }
+        
+        .section-title h2 {
+            font-size: 2.2rem;
+            margin-bottom: 1rem;
+            position: relative;
+            display: inline-block;
+        }
+        
+        .section-title h2::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background: var(--secondary);
+        }
+        
+        .section-title p {
+            max-width: 700px;
+            margin: 0 auto;
+            font-size: 1.1rem;
+            color: var(--gray);
+        }
+        
+        .info-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+        
+        .info-card {
+            background: white;
+            border-radius: 10px;
+            padding: 2rem;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            transition: transform 0.3s;
+        }
+        
+        .info-card:hover {
+            transform: translateY(-10px);
+        }
+        
+        .info-icon {
+            font-size: 3rem;
+            color: var(--primary);
+            margin-bottom: 1.5rem;
+        }
+        
+        .info-card h3 {
+            margin-bottom: 1rem;
+            color: var(--primary-dark);
+        }
+        
+        .energy-types {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+        }
+        
+        .energy-card {
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            transition: transform 0.3s;
+        }
+        
+        .energy-card:hover {
+            transform: translateY(-10px);
+        }
+        
+        .energy-img {
+            height: 200px;
+            background-size: cover;
+            background-position: center;
+        }
+        
+        .energy-content {
+            padding: 1.5rem;
+        }
+        
+        .energy-content h3 {
+            margin-bottom: 0.5rem;
+            color: var(--primary-dark);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .energy-icon {
+            color: var(--primary);
+            font-size: 1.5rem;
+        }
+        
+        .video-gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+        
+        .video-card {
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+        }
+        
+        .video-placeholder {
+            height: 200px;
+            background: #f0f0f0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: var(--gray);
+            font-size: 1.2rem;
+        }
+        
+        .video-content {
+            padding: 1.5rem;
+        }
+        
+        .video-content h3 {
+            margin-bottom: 0.5rem;
+            color: var(--primary-dark);
+        }
+        
+        .challenges {
+            background: var(--light);
+        }
+        
+        .challenge-list {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+        
+        .challenge-item {
+            background: white;
+            border-radius: 10px;
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.05);
+            display: flex;
+            align-items: flex-start;
+            gap: 1rem;
+        }
+        
+        .challenge-icon {
+            background: var(--primary-light);
+            color: white;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 1.5rem;
+            flex-shrink: 0;
+        }
+        
+        .challenge-content h3 {
+            margin-bottom: 0.5rem;
+            color: var(--primary-dark);
+        }
+        
+        .resources {
+            text-align: center;
+        }
+        
+        .resource-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            flex-wrap: wrap;
+            margin-top: 2rem;
+        }
+        
+        .resource-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background: white;
+            color: var(--dark);
+            padding: 12px 25px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+        }
+        
+        .resource-btn:hover {
+            background: var(--primary);
+            color: white;
+            transform: translateY(-3px);
+        }
+        
+        footer {
+            background: var(--dark);
+            color: white;
+            padding: 3rem 1rem 1.5rem;
+        }
+        
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+        
+        .footer-column h3 {
+            margin-bottom: 1.5rem;
+            font-size: 1.2rem;
+        }
+        
+        .footer-links {
+            list-style: none;
+        }
+        
+        .footer-links li {
+            margin-bottom: 0.8rem;
+        }
+        
+        .footer-links a {
+            color: #ddd;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        .footer-links a:hover {
+            color: white;
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+        
+        .social-links a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background: rgba(255,255,255,0.1);
+            border-radius: 50%;
+            color: white;
+            text-decoration: none;
+            transition: background 0.3s;
+        }
+        
+        .social-links a:hover {
+            background: var(--primary);
+        }
+        
+        .copyright {
+            text-align: center;
+            padding-top: 1.5rem;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            font-size: 0.9rem;
+            color: #ccc;
+        }
+        
+        .mobile-menu {
+            display: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+        
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                text-align: center;
+                gap: 1rem;
+            }
+            
+            .logo {
+                justify-content: center;
+            }
+            
+            nav ul {
+                flex-direction: column;
+                gap: 10px;
+            }
+            
+            .mobile-menu {
+                display: block;
+            }
+            
+            .hero h2 {
+                font-size: 2rem;
+            }
+            
+            .hero p {
+                font-size: 1rem;
+            }
+            
+            .resource-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <i class="fas fa-bolt"></i>
+                    <div class="logo-text">
+                        <h1>Energía para el Futuro</h1>
+                        <p>Portal Educativo sobre Energías Renovables</p>
+                    </div>
+                </div>
+                
+                <nav>
+                    <ul>
+                        <li><a href="#" class="active">Inicio</a></li>
+                        <li><a href="#que-es">¿Qué es?</a></li>
+                        <li><a href="#tipos">Tipos de Energía</a></li>
+                        <li><a href="#videos">Videos Educativos</a></li>
+                        <li><a href="#retos">Retos Ecológicos</a></li>
+                        <li><a href="#recursos">Recursos</a></li>
+                    </ul>
+                </nav>
+                
+                <div class="mobile-menu">
+                    <i class="fas fa-bars"></i>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <h2>Descubre el Poder de las Energías Renovables</h2>
+            <p>Un portal educativo diseñado para aprender sobre las fuentes de energía limpia, su importancia para nuestro planeta y cómo podemos implementarlas en nuestra vida diaria.</p>
+            <a href="#que-es" class="btn">Comenzar a Explorar</a>
+            <a href="#retos" class="btn btn-outline">Ver Retos Ecológicos</a>
+        </div>
+    </section>
+
+    <!-- ¿Qué es la energía renovable? -->
+    <section id="que-es">
+        <div class="container">
+            <div class="section-title">
+                <h2>¿Qué es la Energía Renovable?</h2>
+                <p>Conoce los fundamentos de las energías limpias y por qué son esenciales para nuestro futuro</p>
+            </div>
+            
+            <div class="info-grid">
+                <div class="info-card">
+                    <div class="info-icon">
+                        <i class="fas fa-recycle"></i>
+                    </div>
+                    <h3>Definición</h3>
+                    <p>Las energías renovables son aquellas que provienen de fuentes naturales que se regeneran de forma continua. Su aprovechamiento evita el agotamiento de recursos y reduce las emisiones contaminantes.</p>
+                </div>
+                
+                <div class="info-card">
+                    <div class="info-icon">
+                        <i class="fas fa-globe-americas"></i>
+                    </div>
+                    <h3>Importancia Global</h3>
+                    <p>Son pilares de la transición energética global y una respuesta fundamental frente al calentamiento climático. Contribuyen directamente a los Objetivos de Desarrollo Sostenible de la ONU.</p>
+                </div>
+                
+                <div class="info-card">
+                    <div class="info-icon">
+                        <i class="fas fa-leaf"></i>
+                    </div>
+                    <h3>Beneficios Ambientales</h3>
+                    <p>Reducción de emisiones de CO₂, menor dependencia de combustibles fósiles, conservación de recursos naturales y promoción de la sostenibilidad a largo plazo.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Tipos de energía renovable -->
+    <section id="tipos" class="light-bg">
+        <div class="container">
+            <div class="section-title">
+                <h2>Tipos de Energía Renovable</h2>
+                <p>Explora las principales fuentes de energía limpia disponibles en nuestro planeta</p>
+            </div>
+            
+            <div class="energy-types">
+                <div class="energy-card">
+                    <div class="energy-img" style="background-image: url('https://images.unsplash.com/photo-1509391366360-2e959784a276?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80');"></div>
+                    <div class="energy-content">
+                        <h3><i class="fas fa-sun energy-icon"></i> Energía Solar</h3>
+                        <p>Aprovecha la radiación del sol mediante paneles fotovoltaicos o térmicos. Es la fuente de energía más abundante y accesible en muchas regiones.</p>
+                    </div>
+                </div>
+                
+                <div class="energy-card">
+                    <div class="energy-img" style="background-image: url('https://images.unsplash.com/photo-1466611653911-95081537e5b7?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80');"></div>
+                    <div class="energy-content">
+                        <h3><i class="fas fa-wind energy-icon"></i> Energía Eólica</h3>
+                        <p>Transforma el viento en electricidad por medio de aerogeneradores. Ideal para zonas con vientos constantes y fuertes.</p>
+                    </div>
+                </div>
+                
+                <div class="energy-card">
+                    <div class="energy-img" style="background-image: url('https://images.unsplash.com/photo-1506905925346-21bda4d32df4?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80');"></div>
+                    <div class="energy-content">
+                        <h3><i class="fas fa-water energy-icon"></i> Energía Hidráulica</h3>
+                        <p>Utiliza la fuerza del agua en movimiento, generalmente en represas o ríos. Es una de las fuentes renovables más antiguas.</p>
+                    </div>
+                </div>
+                
+                <div class="energy-card">
+                    <div class="energy-img" style="background-image: url('https://images.unsplash.com/photo-1592494804266-f6f7e951a2d7?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80');"></div>
+                    <div class="energy-content">
+                        <h3><i class="fas fa-tree energy-icon"></i> Biomasa</h3>
+                        <p>Obtiene energía de la materia orgánica mediante procesos como la combustión o fermentación. Incluye residuos agrícolas y forestales.</p>
+                    </div>
+                </div>
+                
+                <div class="energy-card">
+                    <div class="energy-img" style="background-image: url('https://images.unsplash.com/photo-1587354985545-6cd2c1df6c99?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80');"></div>
+                    <div class="energy-content">
+                        <h3><i class="fas fa-mountain energy-icon"></i> Geotérmica</h3>
+                        <p>Aprovecha el calor interno de la Tierra para generar electricidad o calefacción. Es especialmente eficiente en zonas volcánicas.</p>
+                    </div>
+                </div>
+                
+                <div class="energy-card">
+                    <div class="energy-img" style="background-image: url('https://images.unsplash.com/photo-1534237710431-e2fcad436e0c?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80');"></div>
+                    <div class="energy-content">
+                        <h3><i class="fas fa-tint energy-icon"></i> Energía Oceánica</h3>
+                        <p>Utiliza el movimiento de las olas, las mareas o las diferencias de temperatura del océano para generar electricidad.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Videos educativos -->
+    <section id="videos">
+        <div class="container">
+            <div class="section-title">
+                <h2>Videos Educativos</h2>
+                <p>Aprende mediante contenido visual sobre las energías renovables</p>
+            </div>
+            
+            <div class="video-gallery">
+                <div class="video-card">
+                    <div class="video-placeholder">
+                        <i class="fas fa-play-circle" style="font-size: 3rem; color: #ccc;"></i>
+                    </div>
+                    <div class="video-content">
+                        <h3>¿Cómo Funciona la Energía Solar?</h3>
+                        <p>Explicación detallada sobre paneles fotovoltaicos y su implementación.</p>
+                    </div>
+                </div>
+                
+                <div class="video-card">
+                    <div class="video-placeholder">
+                        <i class="fas fa-play-circle" style="font-size: 3rem; color: #ccc;"></i>
+                    </div>
+                    <div class="video-content">
+                        <h3>Parques Eólicos: Energía del Viento</h3>
+                        <p>Recorrido por un parque eólico y explicación de su funcionamiento.</p>
+                    </div>
+                </div>
+                
+                <div class="video-card">
+                    <div class="video-placeholder">
+                        <i class="fas fa-play-circle" style="font-size: 3rem; color: #ccc;"></i>
+                    </div>
+                    <div class="video-content">
+                        <h3>Energía Hidroeléctrica Sostenible</h3>
+                        <p>Análisis de centrales hidroeléctricas y su impacto ambiental.</p>
+                    </div>
+                </div>
+                
+                <div class="video-card">
+                    <div class="video-placeholder">
+                        <i class="fas fa-play-circle" style="font-size: 3rem; color: #ccc;"></i>
+                    </div>
+                    <div class="video-content">
+                        <h3>El Futuro de las Energías Renovables</h3>
+                        <p>Perspectivas y avances tecnológicos en energías limpias.</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div style="text-align: center; margin-top: 3rem;">
+                <a href="#" class="btn">Ver Más Videos</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Retos ecológicos -->
+    <section id="retos" class="challenges">
+        <div class="container">
+            <div class="section-title">
+                <h2>Retos Ecológicos</h2>
+                <p>Desafíos y actividades para poner en práctica lo aprendido</p>
+            </div>
+            
+            <div class="challenge-list">
+                <div class="challenge-item">
+                    <div class="challenge-icon">
+                        <i class="fas fa-calculator"></i>
+                    </div>
+                    <div class="challenge-content">
+                        <h3>Calcula tu Huella de Carbono</h3>
+                        <p>Utiliza nuestra calculadora en línea para determinar tu impacto ambiental y recibe recomendaciones personalizadas para reducirlo.</p>
+                    </div>
+                </div>
+                
+                <div class="challenge-item">
+                    <div class="challenge-icon">
+                        <i class="fas fa-home"></i>
+                    </div>
+                    <div class="challenge-content">
+                        <h3>Auditoría Energética en Casa</h3>
+                        <p>Realiza un análisis del consumo energético en tu hogar e identifica oportunidades de ahorro y eficiencia.</p>
+                    </div>
+                </div>
+                
+                <div class="challenge-item">
+                    <div class="challenge-icon">
+                        <i class="fas fa-solar-panel"></i>
+                    </div>
+                    <div class="challenge-content">
+                        <h3>Diseña un Sistema Solar</h3>
+                        <p>Usa nuestra herramienta interactiva para diseñar un sistema de paneles solares para tu escuela o comunidad.</p>
+                    </div>
+                </div>
+                
+                <div class="challenge-item">
+                    <div class="challenge-icon">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <div class="challenge-content">
+                        <h3>Campaña de Concienciación</h3>
+                        <p>Crea materiales educativos y organiza una campaña en tu comunidad para promover las energías renovables.</p>
+                    </div>
+                </div>
+                
+                <div class="challenge-item">
+                    <div class="challenge-icon">
+                        <i class="fas fa-trophy"></i>
+                    </div>
+                    <div class="challenge-content">
+                        <h3>Reto de Innovación Verde</h3>
+                        <p>Participa en nuestro concurso anual de proyectos innovadores relacionados con energías limpias y sostenibilidad.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Recursos -->
+    <section id="recursos" class="resources">
+        <div class="container">
+            <div class="section-title">
+                <h2>Recursos Adicionales</h2>
+                <p>Materiales descargables, enlaces útiles y herramientas para profundizar</p>
+            </div>
+            
+            <div class="resource-buttons">
+                <a href="#" class="resource-btn">
+                    <i class="fas fa-download"></i>
+                    Guía Didáctica PDF
+                </a>
+                
+                <a href="#" class="resource-btn">
+                    <i class="fas fa-book"></i>
+                    Biblioteca Digital
+                </a>
+                
+                <a href="#" class="resource-btn">
+                    <i class="fas fa-gamepad"></i>
+                    Juegos Interactivos
+                </a>
+                
+                <a href="#" class="resource-btn">
+                    <i class="fas fa-chart-bar"></i>
+                    Datos y Estadísticas
+                </a>
+                
+                <a href="#" class="resource-btn">
+                    <i class="fas fa-map-marked-alt"></i>
+                    Mapa de Proyectos
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>Energía para el Futuro</h3>
+                    <p>Portal educativo dedicado a la difusión y enseñanza sobre energías renovables y sostenibilidad ambiental.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Enlaces Rápidos</h3>
+                    <ul class="footer-links">
+                        <li><a href="#que-es">¿Qué es la energía renovable?</a></li>
+                        <li><a href="#tipos">Tipos de energía</a></li>
+                        <li><a href="#videos">Videos educativos</a></li>
+                        <li><a href="#retos">Retos ecológicos</a></li>
+                        <li><a href="#recursos">Recursos</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Contacto</h3>
+                    <ul class="footer-links">
+                        <li><i class="fas fa-envelope"></i> info@energiafuturo.edu</li>
+                        <li><i class="fas fa-phone"></i> (01) 234-5678</li>
+                        <li><i class="fas fa-map-marker-alt"></i> Universidad Católica de Trujillo</li>
+                        <li><i class="fas fa-globe"></i> www.energiaparafuturo.pe</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="copyright">
+                <p>&copy; 2023 Energía para el Futuro - Todos los derechos reservados | Desarrollado con <i class="fas fa-heart" style="color: #e74c3c;"></i> para un planeta más sostenible</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('nav a').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                if(targetId === '#') return;
+                
+                const targetElement = document.querySelector(targetId);
+                window.scrollTo({
+                    top: targetElement.offsetTop - 80,
+                    behavior: 'smooth'
+                });
+            });
+        });
+        
+        // Mobile menu toggle
+        const mobileMenu = document.querySelector('.mobile-menu');
+        const nav = document.querySelector('nav ul');
+        
+        mobileMenu.addEventListener('click', () => {
+            nav.style.display = nav.style.display === 'flex' ? 'none' : 'flex';
+        });
+        
+        // Add animation to cards when they come into view
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, { threshold: 0.1 });
+        
+        // Apply initial styles for animation
+        document.querySelectorAll('.info-card, .energy-card, .video-card, .challenge-item').forEach(card => {
+            card.style.opacity = '0';
+            card.style.transform = 'translateY(20px)';
+            card.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+            observer.observe(card);
+        });
+    </script>
+</body>
+</html>
